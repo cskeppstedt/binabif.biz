@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { SUPABASE_CONFIG } from './config.js';
+import TypeIt from 'typeit';
 
 // Initialize Supabase client
 const supabaseClient = createClient(
@@ -116,5 +117,36 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
+// Initialize typewriter effects
+function initTypewriterEffects() {
+  // Get the original text content
+  const tagline = document.querySelector('.tagline');
+  const mysteryText = document.querySelector('.mystery-text p');
+
+  const taglineText = tagline.textContent;
+  const mysteryTextContent = mysteryText.innerHTML;
+
+  // Clear the text initially to prevent flash of unstyled content
+  tagline.textContent = '';
+  mysteryText.innerHTML = '';
+
+  // Tagline typewriter
+  new TypeIt('.tagline', {
+    strings: taglineText,
+    speed: 60,
+    waitUntilVisible: true,
+  }).go();
+
+  // Mystery text typewriter (starts after tagline)
+  setTimeout(() => {
+    new TypeIt('.mystery-text p', {
+      strings: mysteryTextContent,
+      speed: 50,
+      waitUntilVisible: true,
+    }).go();
+  }, taglineText.length * 60 + 500);
+}
+
 // Load count when page loads
 loadCount();
+initTypewriterEffects();
