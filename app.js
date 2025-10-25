@@ -2,33 +2,39 @@
 const { createClient } = supabase;
 
 // Check if config is loaded
-if (typeof SUPABASE_CONFIG === 'undefined') {
-  console.error('Config not loaded. Please create config.js from config.example.js');
-  document.getElementById('message').textContent = 'Configuration error. Please check setup.';
-  document.getElementById('message').className = 'message error';
+if (typeof SUPABASE_CONFIG === "undefined") {
+  console.error(
+    "Config not loaded. Please create config.js from config.example.js"
+  );
+  document.getElementById("message").textContent =
+    "Configuration error. Please check setup.";
+  document.getElementById("message").className = "message error";
 }
 
-const supabaseClient = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+const supabaseClient = createClient(
+  SUPABASE_CONFIG.url,
+  SUPABASE_CONFIG.anonKey
+);
 
 // DOM elements
-const form = document.getElementById('waitlist-form');
-const emailInput = document.getElementById('email-input');
-const submitBtn = document.getElementById('submit-btn');
-const messageDiv = document.getElementById('message');
-const countElement = document.getElementById('waitlist-count');
+const form = document.getElementById("waitlist-form");
+const emailInput = document.getElementById("email-input");
+const submitBtn = document.getElementById("submit-btn");
+const messageDiv = document.getElementById("message");
+const countElement = document.getElementById("waitlist-count");
 
 // Load waitlist count on page load
 async function loadCount() {
   try {
-    const { data, error } = await supabaseClient.rpc('get_waitlist_count');
+    const { data, error } = await supabaseClient.rpc("get_waitlist_count");
 
     if (error) throw error;
 
     countElement.textContent = data || 0;
     animateCount(data || 0);
   } catch (error) {
-    console.error('Error loading count:', error);
-    countElement.textContent = '?';
+    console.error("Error loading count:", error);
+    countElement.textContent = "?";
   }
 }
 
@@ -62,59 +68,60 @@ function showMessage(text, type) {
 
   // Clear message after 5 seconds
   setTimeout(() => {
-    messageDiv.textContent = '';
-    messageDiv.className = 'message';
+    messageDiv.textContent = "";
+    messageDiv.className = "message";
   }, 5000);
 }
 
 // Handle form submission
-form.addEventListener('submit', async (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const email = emailInput.value.trim();
 
   if (!email) {
-    showMessage('Please enter your email', 'error');
+    showMessage("Please enter your email", "error");
     return;
   }
 
   // Disable form while submitting
   submitBtn.disabled = true;
-  submitBtn.textContent = 'Joining...';
+  submitBtn.textContent = "Joining...";
 
   try {
     // Call the Supabase function to add email
-    const { data, error } = await supabaseClient.rpc('add_to_waitlist', {
-      user_email: email
+    const { data, error } = await supabaseClient.rpc("add_to_waitlist", {
+      user_email: email,
+      url_path: window.location.pathname,
     });
 
     if (error) throw error;
 
     // Check the response from our function
     if (data.success) {
-      showMessage('Welcome! You are on the waitlist.', 'success');
-      emailInput.value = '';
+      showMessage("Welcome! You are on the waitlist.", "success");
+      emailInput.value = "";
 
       // Reload count after successful signup
       setTimeout(() => {
         loadCount();
       }, 500);
     } else {
-      showMessage(data.error || 'Failed to join waitlist', 'error');
+      showMessage(data.error || "Failed to join waitlist", "error");
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
 
     // Check for specific error types
-    if (error.message.includes('unique')) {
-      showMessage('This email is already registered', 'error');
+    if (error.message.includes("unique")) {
+      showMessage("This email is already registered", "error");
     } else {
-      showMessage('An error occurred. Please try again.', 'error');
+      showMessage("An error occurred. Please try again.", "error");
     }
   } finally {
     // Re-enable form
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Join the Waitlist';
+    submitBtn.textContent = "Join the Waitlist";
   }
 });
 

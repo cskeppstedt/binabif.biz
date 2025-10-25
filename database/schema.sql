@@ -2,6 +2,7 @@
 CREATE TABLE IF NOT EXISTS waitlist (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   email TEXT NOT NULL UNIQUE,
+  url_path TEXT NOT NULL DEFAULT '/',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()) NOT NULL
 );
 
@@ -43,7 +44,7 @@ $$;
 GRANT EXECUTE ON FUNCTION get_waitlist_count() TO anon;
 
 -- Create a function to validate and insert email
-CREATE OR REPLACE FUNCTION add_to_waitlist(user_email TEXT)
+CREATE OR REPLACE FUNCTION add_to_waitlist(user_email TEXT, url_path TEXT DEFAULT NULL)
 RETURNS JSON
 LANGUAGE plpgsql
 SECURITY DEFINER
@@ -62,10 +63,11 @@ BEGIN
 
   -- Try to insert
   BEGIN
-    INSERT INTO waitlist (email) VALUES (clean_email);
+    INSERT INTO waitlist (email, url_path) VALUES (clean_email, url_path);
     RETURN json_build_object('success', true, 'message', 'Successfully added to waitlist');
   EXCEPTION WHEN unique_violation THEN
-    RETURN json_build_object('success', false, 'error', 'Email already registered');
+    -- Gracefully accept duplicate emails without revealing they exist
+    RETURN json_build_object('success', true, 'message', 'Successfully added to waitlist');
   END;
 END;
 $$;
