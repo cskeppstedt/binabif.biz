@@ -1,3 +1,6 @@
+# Supabase credentials - DO NOT COMMIT
+config.js
+
 # macOS
 .DS_Store
 
