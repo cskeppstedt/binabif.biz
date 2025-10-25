@@ -1,51 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BINABIF - Something is Coming...</title>
-  <meta name="description" content="A mysterious new game is on the horizon. Join the waitlist.">
-  <link rel="stylesheet" href="/src/styles.css">
-</head>
-<body>
-  <div class="container">
-    <div class="logo-wrapper">
-      <img src="/binabif.png" alt="BINABIF" class="logo">
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BINABIF - Something is Coming...</title>
+    <meta
+      name="description"
+      content="A mysterious new game is on the horizon. Join the waitlist."
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo-wrapper">
+        <img src="/binabif.png" alt="BINABIF" class="logo" />
+      </div>
 
-    <div class="glitch-wrapper">
-      <h1 class="glitch" data-text="BINABIF">BINABIF</h1>
-    </div>
+      <div class="glitch-wrapper">
+        <h1 class="glitch" data-text="BINABIF">BINABIF</h1>
+      </div>
 
-    <p class="tagline">Something mysterious is coming...</p>
+      <p class="tagline">Something mysterious is coming...</p>
 
-    <div class="counter-wrapper">
-      <div class="counter">
-        <span id="waitlist-count" class="count-number">...</span>
-        <span class="count-label">Waiting</span>
+      <div class="counter-wrapper">
+        <div class="counter">
+          <span id="waitlist-count" class="count-number">...</span>
+          <span class="count-label">Waiting</span>
+        </div>
+      </div>
+
+      <div class="signup-form">
+        <form id="waitlist-form">
+          <input
+            type="email"
+            id="email-input"
+            placeholder="Enter your email"
+            required
+            autocomplete="email"
+          />
+          <button type="submit" id="submit-btn">Join the Waitlist</button>
+        </form>
+        <div id="message" class="message"></div>
+      </div>
+
+      <div class="mystery-text">
+        <p>The game begins soon.<br />Will you be ready?</p>
       </div>
     </div>
 
-    <div class="signup-form">
-      <form id="waitlist-form">
-        <input
-          type="email"
-          id="email-input"
-          placeholder="Enter your email"
-          required
-          autocomplete="email"
-        >
-        <button type="submit" id="submit-btn">Join the Waitlist</button>
-      </form>
-      <div id="message" class="message"></div>
-    </div>
-
-    <div class="mystery-text">
-      <p>The game begins soon.<br>Will you be ready?</p>
-    </div>
-  </div>
-
-  <!-- App Script -->
-  <script type="module" src="/src/app2.js"></script>
-</body>
+    <!-- App Script -->
+    <script type="module" src="/src/app.js"></script>
+  </body>
 </html>
