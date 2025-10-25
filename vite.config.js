@@ -16,7 +16,9 @@ export default defineConfig({
       },
       pngquant: false,
       svgo: false,
-      webp: false,
+      webp: {
+        quality: 85, // 0-100, higher = better quality
+      },
     }),
   ],
 
