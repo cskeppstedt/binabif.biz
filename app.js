@@ -120,6 +120,3 @@ form.addEventListener('submit', async (e) => {
 
 // Load count when page loads
 loadCount();
-
-// Refresh count every 30 seconds
-setInterval(loadCount, 30000);
