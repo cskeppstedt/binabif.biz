@@ -1,14 +1,32 @@
 import { defineConfig } from 'vite';
+import viteImagemin from 'vite-plugin-imagemin';
 
 export default defineConfig({
   // Standard Vite defaults - these are explicit for clarity
   root: '.',
   publicDir: 'public',
 
+  plugins: [
+    // Optimize images during build
+    viteImagemin({
+      gifsicle: false,
+      mozjpeg: false,
+      optipng: {
+        optimizationLevel: 7, // 0-7, higher = more compression
+      },
+      pngquant: false,
+      svgo: false,
+      webp: false,
+    }),
+  ],
+
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
+
+    // Explicitly enable HTML minification
+    minify: 'esbuild', // or 'terser' for more aggressive minification
 
     rollupOptions: {
       output: {

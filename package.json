@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/cskeppstedt/binabif.biz#readme",
   "devDependencies": {
-    "vite": "^7.1.12"
+    "vite": "^7.1.12",
+    "vite-plugin-imagemin": "^0.6.1"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.76.1"
