@@ -1,0 +1,239 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
+  color: #00ff88;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Glitch effect for title */
+.glitch-wrapper {
+  margin-bottom: 2rem;
+}
+
+.glitch {
+  font-size: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
+  text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+    0.025em 0.04em 0 #fffc00;
+  animation: glitch 725ms infinite;
+  letter-spacing: 0.3rem;
+}
+
+.glitch span {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+      0.025em 0.04em 0 #fffc00;
+  }
+  15% {
+    text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+      0.025em 0.04em 0 #fffc00;
+  }
+  16% {
+    text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+      -0.05em -0.05em 0 #fffc00;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+      -0.05em -0.05em 0 #fffc00;
+  }
+  50% {
+    text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+      0 -0.04em 0 #fffc00;
+  }
+  99% {
+    text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+      0 -0.04em 0 #fffc00;
+  }
+  100% {
+    text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+      -0.04em -0.025em 0 #fffc00;
+  }
+}
+
+.tagline {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  color: #00ff88;
+  opacity: 0.8;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Counter */
+.counter-wrapper {
+  margin-bottom: 3rem;
+}
+
+.counter {
+  display: inline-block;
+  padding: 2rem 3rem;
+  border: 2px solid #00ff88;
+  border-radius: 10px;
+  background: rgba(0, 255, 136, 0.05);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.count-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #00ff88;
+  margin-bottom: 0.5rem;
+}
+
+.count-label {
+  display: block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  color: #00ff88;
+  opacity: 0.7;
+}
+
+/* Form */
+.signup-form {
+  margin-bottom: 3rem;
+}
+
+#waitlist-form {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+#email-input {
+  flex: 1;
+  min-width: 250px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #00ff88;
+  border-radius: 5px;
+  color: #00ff88;
+  font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
+}
+
+#email-input:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#email-input::placeholder {
+  color: #00ff88;
+  opacity: 0.5;
+}
+
+#submit-btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #00ff88;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
+  letter-spacing: 0.1rem;
+}
+
+#submit-btn:hover {
+  background: #00cc6a;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+  transform: translateY(-2px);
+}
+
+#submit-btn:active {
+  transform: translateY(0);
+}
+
+#submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Messages */
+.message {
+  min-height: 1.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.message.success {
+  color: #00ff88;
+}
+
+.message.error {
+  color: #ff0055;
+}
+
+/* Mystery text */
+.mystery-text {
+  margin-top: 4rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #00ff88;
+  opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .glitch {
+    font-size: 2.5rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .tagline {
+    font-size: 1.2rem;
+  }
+
+  .count-number {
+    font-size: 2rem;
+  }
+
+  #waitlist-form {
+    flex-direction: column;
+  }
+
+  #email-input {
+    min-width: 100%;
+  }
+}
