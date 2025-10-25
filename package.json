@@ -1,0 +1,28 @@
+{
+  "name": "binabif.biz",
+  "version": "1.0.0",
+  "description": "A sleek, mysterious waitlist page for the upcoming BINABIF game.",
+  "main": "app2.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cskeppstedt/binabif.biz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cskeppstedt/binabif.biz/issues"
+  },
+  "homepage": "https://github.com/cskeppstedt/binabif.biz#readme",
+  "devDependencies": {
+    "vite": "^7.1.12"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.76.1"
+  }
+}

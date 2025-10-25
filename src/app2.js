@@ -1,16 +1,7 @@
+import { createClient } from '@supabase/supabase-js';
+import { SUPABASE_CONFIG } from './config.js';
+
 // Initialize Supabase client
-const { createClient } = supabase;
-
-// Check if config is loaded
-if (typeof SUPABASE_CONFIG === "undefined") {
-  console.error(
-    "Config not loaded. Please create config.js from config.example.js"
-  );
-  document.getElementById("message").textContent =
-    "Configuration error. Please check setup.";
-  document.getElementById("message").className = "message error";
-}
-
 const supabaseClient = createClient(
   SUPABASE_CONFIG.url,
   SUPABASE_CONFIG.anonKey
