@@ -22,6 +22,34 @@ body {
   width: 100%;
 }
 
+/* Logo */
+.logo-wrapper {
+  margin-bottom: 2rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.logo {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 30px rgba(0, 255, 136, 0.5));
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 /* Glitch effect for title */
 .glitch-wrapper {
   margin-bottom: 2rem;
@@ -216,6 +244,10 @@ body {
 
 /* Responsive */
 @media (max-width: 600px) {
+  .logo {
+    max-width: 180px;
+  }
+
   .glitch {
     font-size: 2.5rem;
     letter-spacing: 0.2rem;
